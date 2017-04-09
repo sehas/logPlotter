@@ -1,0 +1,47 @@
+<md-dialog class="ng-cloak" >
+    <md-dialog-content class="md-dialog-content">
+        <h2 class="md-title">Import a category</h2>
+        <div data-layout="row" layout-wrap>
+            <div flex="50">
+                <md-input-container class="md-icon-float md-block" style="max-width:220px"> <label>File to import</label> 
+                    <md-icon class="material-icon">file_download</md-icon>
+                    <input data-ng-model="importer.dataFileName" type="text" data-aps-file="importer.dataFile"  /> 
+                </md-input-container>
+            </div>
+            <div flex="50">
+                <md-input-container class="md-input-has-value">
+                    <label >Data format</label>
+                    <md-radio-group data-ng-model="importer.format">
+                        <md-radio-button value="process">Processes</md-radio-button>
+                        <md-radio-button value="datasource" disabled="disabled">Datasource connection pool</md-radio-button>
+                    </md-radio-group>
+                </md-input-container>
+            </div>
+            <div flex="50">
+                <md-input-container>
+                    <label>Chart type</label>
+                    <md-select data-ng-model="importer.type" style="min-width:120px">
+                        <md-option data-ng-value="type.type" ng-repeat="type in chartTypes"><md-icon class="material-icon">{{type.icon}}</md-icon> {{type.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div flex="50">
+                <md-input-container style="min-width:150px">
+                    <label>Color</label>
+                    <md-select ng-model="importer.color" >
+                        <md-option data-ng-value="null">automatic</md-option>
+                        <md-option ng-value="cl" ng-repeat="cl in colors">
+                            <div class="color-dot" style="border-color:{{cl}}" >
+                                <div style="background-color:{{cl}}" ></div>
+                            </div>
+                                {{cl}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </div>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <md-button ng-click="cancel()">Cancel</md-button>
+        <md-button ng-click="import()" class="md-primary"  data-ng-disabled="!importer.dataFile">Import</md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html data-ng-app="GraphApp" lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Graphs</title>
+        <meta name="description" content="Graphs app">
+        <!-- Angular Material style sheet -->
+        <link href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&lang=en" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" rel="stylesheet">
+        <link href="graph.css" rel="stylesheet">
+        <link href="categoryDetail.css" rel="stylesheet">
+    </head>
+    <body data-ng-cloak data-layout="column" data-ng-controller="GraphCtrl">
+        <md-toolbar> Log plotter </md-toolbar>
+        <div data-flex data-layout="row">
+            <md-sidenav data-flex="15" data-md-is-locked-open="true" class="md-whiteframe-z1">
+                <md-content style="overflow-x:hidden">
+                    <div>
+                        <md-list >
+                            <md-list-item ng-repeat="cat in categories" data-layout="row" data-ng-click="selectCategory(cat)"  data-ng-class="{'selected' : cat === categories.selected }">
+                                <div>                             
+                                    <md-button class="md-fab md-mini" data-ng-click="showColorPicker($event,cat)" data-ng-style="{'background-color':cat.color}">
+                                        <md-icon class="material-icon">show_chart</md-icon>
+                                    </md-button>
+                                </div>                            
+                                <span class="category-name">{{ cat.label }}</span>
+                                <md-switch class="md-secondary" ng-model="cat.show" aria-label="switch category visibility"></md-switch>
+                                <md-divider md-inset ng-if="!$last"></md-divider>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                </md-content>
+                <md-button class="md-fab fab-bottom-right" data-ng-click="showImportDialog($event)" >
+                    <md-icon class="material-icon">add</md-icon>
+                </md-button>
+
+            </md-sidenav>
+            <div data-layout="column" data-flex>
+                <div class="box2" data-layout="column" data-layout-align="end end">
+                    <md-progress-linear data-md-mode="determinate" data-ng-value="progress.ratio()"></md-progress-linear>
+                    <span class="progress-value">{{progress.total?'improted '+progress.total + ' b':''}}&nbsp;</span>
+                    <md-progress-linear data-md-mode="{{parsePorgress.status==='pending'?'indeterminate':'determinate'}}" value="{{parsePorgress.status==='done'?100:0}}"></md-progress-linear>
+                    <span class="progress-value">{{parsePorgress.parsed?parsePorgress.parsed + ' records parsed':''}}&nbsp;</span>
+                </div>
+                <div class="box1">
+                    <!--<angular-chart style="height:100%, min-height:100%" style="background-color:red" options="chartOptions" instance="instance"></angular-chart>-->
+                    <div id="chartContainer" style="height:100%; width:100%; ZZbackground-color:red">
+                        <!-- <angular-chart style="height:100%, min-height:100%" style="background-color:red" options="chartOptions" instance="instance"></angular-chart> -->
+                        <div id='chart'></div>
+                    </div>
+                </div>
+                <div class="box3">
+                    <div class="log-container">
+                        <div data-ng-repeat="log in logs track by $index" data-ng-class="'log-'+log.level">{{log.message}}</div>
+                    </div>
+                    <md-button data-ng-show="logs.length" class="md-fab  md-mini fab-top-right" data-ng-click="clearLog()" >
+                        <md-icon class="material-icon">delete_forever</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+        <!-- color picker dialog-->
+        <div style="visibility: hidden" aria-hidden="true">
+            <div class="md-dialog-container" id="colorPicker">
+                <md-dialog layout="row" layout-sm="column" layout-align="center center" aria-label="pick a color" layout-wrap style="background:none;box-shadow:none">
+                    <div data-ng-repeat="col in colors" >
+                        <md-button class="md-fab md-raised md-mini" aria-label="{{col}}"data-ng-style="{'background-color':col}" data-ng-click="select(col)"></md-button>
+                    </div>                            
+                </md-dialog>
+            </div>
+        </div>
+
+
+
+        <!-- Angular Material requires Angular.js Libraries -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+        <script src="../js/parsers.js"></script>
+        <script src="../js/graph.js"></script>
+        <script src="../js/graphManager.js"></script>
+        <script src="../lib/angular-chart.js"></script>
+    </body>
+</html>

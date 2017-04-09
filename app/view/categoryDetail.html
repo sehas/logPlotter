@@ -1,0 +1,48 @@
+<md-bottom-sheet class="ng-cloak md-grid detail-sheet" data-layout="column">
+    <div >
+        <md-list data-flex="flex" layout="row" layout-align="center center">
+            <md-list-item >
+                <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="ctrl.category.label" />
+                </md-input-container>
+            </md-list-item>
+            <md-list-item >
+                <md-input-container>
+                    <label>Number of point</label>
+                    <input ng-model="ctrl.category.length" disabled="disabled"/>
+                </md-input-container>
+            </md-list-item>
+            <md-list-item >
+                <md-input-container>
+                    <md-switch  ng-model="ctrl.category.show" aria-label="switch category visibility">Display</md-switch>
+                </md-input-container>
+            </md-list-item>
+            <md-list-item >
+                <md-input-container>
+                    <md-button class="md-grid-item-content" data-ng-click="ctrl.showColorPicker($event,ctrl.category)">
+                        <md-icon class="material-icon" data-ng-style="{'color':ctrl.category.color}">show_chart</md-icon>
+                        <div class="md-grid-text">Color</div>
+                    </md-button>
+                </md-input-container>
+            </md-list-item>
+            <md-list-item >
+                <md-input-container>
+                    <label>Chart type</label>
+                    <md-select data-ng-model="ctrl.category.type" style="min-width:70px">
+                        <md-option data-ng-value="type.type" ng-repeat="type in ctrl.chartTypes"><md-icon class="material-icon">{{type.icon}}</md-icon> {{type.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </md-list-item>
+            <md-list-item >
+                <md-input-container>
+                    <md-button class="md-grid-item-content" data-ng-click="ctrl.deleteCategory($event)" >
+                        <md-icon class="material-icon md-warn">delete_forever</md-icon>
+                        <div class="md-grid-text">Delete</div>
+                    </md-button>
+                </md-input-container>
+            </md-list-item>
+        </md-list>
+
+    </div>
+</md-bottom-sheet>

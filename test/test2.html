@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html data-ng-app="GraphApp" lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>test</title>
+        <meta name="description" content="Graphs app">
+        <!-- Angular Material style sheet -->
+        <style>
+            html,body { height: 100%; margin: 0px; padding: 0px; }
+        </style>
+    </head>
+    <body data-ng-controller="GraphCtrl">
+        <button data-ng-click="doit()">doIt</button>
+        <input type="checkbox" data-ng-model="cat.show" />
+        <canvas id='chart' style="height:100%;width:100%;display:flex"></canvas>
+   
+        <script src="hammer.min.js"></script>
+        <script src="moment.js"></script>
+        <script src="Chart.js"></script>
+        <script src="chartjs-plugin-zoom.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="test2.js"></script>
+    </body>
+</html>

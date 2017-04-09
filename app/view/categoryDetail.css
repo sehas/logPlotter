@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.detail-sheet .md-grid-item-content {
+    height: 90px;
+    padding-top: 10px; 
+}
+
+.detail-sheet .md-grid-item-content md-icon {
+    height: 48px;
+    width: 48px; 
+    border-radius:4px;
+    vertical-align:middle;
+    line-height:48px;
+    font-size:32px;
+}
+
+.detail-sheet .md-grid-item-content.md-button {
+    margin-top:-18px;
+}
+
+
+
+.detail-sheet .md-grid-text {
+    padding-bottom: 5px; 
+}
