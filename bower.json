@@ -1,5 +1,5 @@
 {
-	"name": "graph-plotter",
+	"name": "log-plotter",
 	"license": "MIT",
 	"main": [
 		"js/graph.js",
